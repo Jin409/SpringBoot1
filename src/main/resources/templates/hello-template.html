@@ -1,0 +1,10 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- 해당 부분을 넣어주면 템플릿 엔진으로서 타임리프 문법 사용 가능.-->
+<body>
+<!--# 타임리프 문법 사용-->
+<!--hello! empty 의 역할은 서버 없이 html만 봤을 때도 어떤 형태인지 확인할 수 있음. -->
+<!-- 서버가 돌아간다면 템플릿 엔진의 값으로 나오게 됨. -->
+<p th:text="'안녕하세요.'+${name}">hello! empty</p>
+</body>
+</html>
