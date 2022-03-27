@@ -2,16 +2,21 @@ package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
+//스프링이 컨테이너에 등록할 수 있도록. 이걸 하지 않으면 스프링이 해당 클래스를 인식하지 못함.
 public class MemberService {
 
     //final 은 불변이 아니라 재할당할 수 없도록 한다.
     // 최초 초기화나 상속 이후 변할 수 없는 값.
     private final MemberRepository memberRepository;
 
+    @Autowired //레포지토리와 서비스를 연결시켜준다.
     public MemberService(MemberRepository memberRepository){
         this.memberRepository = memberRepository;
     }
