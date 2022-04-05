@@ -53,6 +53,6 @@ public class MemberController {
     public String list(Model model){
       List<Member> members = memberService.findMembers();
       model.addAttribute("members",members); //리스트 자체를 모델에 담는다
-        return "members/memberList"
+        return "members/memberList";
     }
 }

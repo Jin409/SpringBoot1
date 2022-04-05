@@ -1,21 +1,25 @@
 package hello.hellospring;
+import hello.hellospring.repository.JdbcMemberRepository;
 
+import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 import hello.hellospring.service.MemberService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
+import javax.sql.DataSource;
 @Configuration
 public class SpringConfig {
-
-    @Bean
-    public MemberService memberService(){
-        return new MemberService(memberRepository()); // 해당 로직을 호출하여 알아서 스프링빈에 등록해준다.
-        //해당 객체는 생성자가 있어야 해서 아래에서 빈 생성해주고 넣어줌.
+    private final DataSource dataSource;
+    public SpringConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
-
     @Bean
-    public MemoryMemberRepository memberRepository(){
-        return new MemoryMemberRepository();
+    public MemberService memberService() {
+        return new MemberService(memberRepository());
+    }
+    @Bean
+    public MemberRepository memberRepository() {
+// return new MemoryMemberRepository();
+        return new JdbcMemberRepository(dataSource);
     }
 }
